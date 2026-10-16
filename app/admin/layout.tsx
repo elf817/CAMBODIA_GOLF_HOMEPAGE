@@ -58,6 +58,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link href="/admin/inquiries" className={pathname.startsWith("/admin/inquiries") ? "text-deep font-medium" : ""}>
               문의게시판
             </Link>
+            <Link href="/admin/videos" className={pathname.startsWith("/admin/videos") ? "text-deep font-medium" : ""}>
+              홍보영상
+            </Link>
           </nav>
         </div>
         <button onClick={handleLogout} className="text-[13px] text-muted-2 border-b border-muted-3">

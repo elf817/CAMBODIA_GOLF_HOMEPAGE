@@ -81,7 +81,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 sm:absolute sm:right-12 sm:top-1/2 sm:-translate-y-1/2">
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:absolute sm:right-12 sm:top-1/2 sm:-translate-y-1/2">
           <div className="flex items-center gap-2.5">
             <span className="text-[15px] text-bg/70">{lang === "en" ? "Follow us" : "Follow us"}</span>
             <a

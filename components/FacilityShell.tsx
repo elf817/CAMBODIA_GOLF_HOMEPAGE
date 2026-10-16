@@ -11,12 +11,14 @@ const TABS = {
     { href: "/facilities/clubhouse", label: "클럽하우스" },
     { href: "/facilities/range", label: "골프연습장" },
     { href: "/facilities/gallery", label: "갤러리" },
+    { href: "/facilities/video", label: "홍보영상" },
   ],
   en: [
     { href: "/facilities/golftel", label: "Golftel" },
     { href: "/facilities/clubhouse", label: "Clubhouse" },
     { href: "/facilities/range", label: "Driving Range" },
     { href: "/facilities/gallery", label: "Gallery" },
+    { href: "/facilities/video", label: "Video" },
   ],
 };
 

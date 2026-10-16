@@ -10,7 +10,7 @@ import { CLUBHOUSE_ITEMS } from "@/lib/data";
 export default function ClubhousePage() {
   const { lang } = useLanguage();
   return (
-    <FacilityShell summary={lang === "en" ? "Restaurant · Pro Shop · Locker · Shower" : "레스토랑 · 프로샵 · 라커 · 샤워"}>
+    <FacilityShell summary={lang === "en" ? "Restaurant · Locker · Shower" : "레스토랑 · 라커 · 샤워"}>
       <section className="px-5 sm:px-36 pt-10 sm:pt-[76px] pb-16 sm:pb-[104px]">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-8 sm:gap-14 items-center mb-14 sm:mb-16">
           <div className="relative min-h-[280px] md:min-h-[420px]">

@@ -27,6 +27,8 @@ const TEXT = {
     ),
     heroCourseBtn: "코스 안내",
     heroFacilityBtn: "시설 안내",
+    heroVideoBtn: "홍보영상",
+    heroBoardBtn: "문의 게시판",
     clubHeading: "라운드가 여행의 중심이 되는 곳",
     clubP1: (
       <>
@@ -71,6 +73,8 @@ const TEXT = {
     ),
     heroCourseBtn: "The Course",
     heroFacilityBtn: "Facilities",
+    heroVideoBtn: "Video",
+    heroBoardBtn: "Inquiries",
     clubHeading: "Where Every Journey Centers on the Round",
     clubP1: (
       <>
@@ -120,7 +124,7 @@ export default function HomePage() {
           className="absolute inset-0"
           style={{ background: "linear-gradient(180deg, rgba(16,32,24,0.18) 0%, rgba(16,32,24,0.82) 100%)" }}
         />
-        <div className="relative w-full min-w-0 pl-[58px] pr-5 sm:pl-[86px] sm:pr-12 pb-14 sm:pb-[76px] max-w-[1080px]">
+        <div className="relative w-full min-w-0 px-5 sm:pl-[86px] sm:pr-12 pb-14 sm:pb-[76px] max-w-[1080px]">
           <p className="mb-4 sm:mb-[22px] text-[10.5px] tracking-[0.44em] text-gold">GOLF · STAY · PRACTICE · RELAX</p>
           <h1 className="font-serif font-medium text-[22px] sm:text-[30px] md:text-[38px] leading-[1.3] text-bg">
             Experience Golf, <span className="text-gold">Stay</span> &amp; Relax
@@ -144,6 +148,18 @@ export default function HomePage() {
               className="px-8 py-4 border border-bg/45 text-bg text-[14px] tracking-[0.06em] text-center"
             >
               {t.heroFacilityBtn}
+            </Link>
+            <Link
+              href="/facilities/video"
+              className="px-8 py-4 border border-bg/45 text-bg text-[14px] tracking-[0.06em] text-center"
+            >
+              {t.heroVideoBtn}
+            </Link>
+            <Link
+              href="/board/inquiry"
+              className="px-8 py-4 border border-bg/45 text-bg text-[14px] tracking-[0.06em] text-center"
+            >
+              {t.heroBoardBtn}
             </Link>
           </div>
         </div>

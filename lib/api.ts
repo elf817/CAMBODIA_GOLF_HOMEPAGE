@@ -6,8 +6,9 @@
 // "http://localhost" breaks the moment the site is opened from another
 // device on the network (e.g. http://<lan-ip>:3000), since that browser's
 // "localhost" points at itself, not at the dev machine. Instead, take the
-// configured dev URL's port/protocol but swap in whatever hostname the
-// browser actually used to load the page.
+// configured dev URL's port but swap in whatever hostname and protocol the
+// browser actually used to load the page (otherwise an http:// API call
+// from an https:// page gets blocked as mixed content).
 function resolveApiBase(): string {
   const configured = process.env.NEXT_PUBLIC_API_BASE || "/backend/api";
   if (configured.startsWith("/")) return configured;
@@ -15,6 +16,7 @@ function resolveApiBase(): string {
   try {
     const url = new URL(configured);
     url.hostname = window.location.hostname;
+    url.protocol = window.location.protocol;
     return url.toString().replace(/\/$/, "");
   } catch {
     return configured;
@@ -56,6 +58,29 @@ export interface InquiryDetail {
   reply: string | null;
   repliedAt: string | null;
   createdAt: string;
+}
+
+export interface Video {
+  id: number;
+  title: string;
+  youtubeId: string;
+  createdAt: string;
+}
+
+// Accepts a full YouTube URL (watch?v=, youtu.be/, shorts/, embed/) or a
+// bare video ID, and returns just the 11-ish char video ID, or null if the
+// input doesn't look like either.
+export function extractYoutubeId(input: string): string | null {
+  const trimmed = input.trim();
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtube\.com\/shorts\/|youtube\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,20})/,
+  ];
+  for (const re of patterns) {
+    const m = trimmed.match(re);
+    if (m) return m[1];
+  }
+  if (/^[A-Za-z0-9_-]{6,20}$/.test(trimmed)) return trimmed;
+  return null;
 }
 
 class ApiError extends Error {}
@@ -156,6 +181,20 @@ export function replyInquiry(id: number, reply: string): Promise<void> {
 
 export function deleteInquiry(id: number): Promise<void> {
   return postForm("/inquiries.php?action=delete", { id });
+}
+
+// ---- Videos ----
+
+export function listVideos(): Promise<Video[]> {
+  return apiFetch<Video[]>("/videos.php?action=list");
+}
+
+export function createVideo(input: { title: string; youtubeId: string }): Promise<{ id: number }> {
+  return postForm("/videos.php?action=create", input);
+}
+
+export function deleteVideo(id: number): Promise<void> {
+  return postForm("/videos.php?action=delete", { id });
 }
 
 // ---- Admin auth ----
