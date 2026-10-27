@@ -4,6 +4,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { deleteInquiry, listInquiries, type InquiryListItem } from "@/lib/api";
 
+function truncate(text: string, maxLen: number): string {
+  return text.length > maxLen ? text.slice(0, maxLen) + "…" : text;
+}
+
 export default function InquiryAdminListClient() {
   const [inquiries, setInquiries] = useState<InquiryListItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +45,9 @@ export default function InquiryAdminListClient() {
           {inquiries.map((q) => (
             <div key={q.id} className="flex items-center gap-4 px-2 py-4 border-b border-deep/[0.12]">
               <span className="flex-1 text-[14px] text-ink overflow-hidden text-ellipsis whitespace-nowrap">{q.title}</span>
-              <span className="text-[12.5px] text-muted w-[80px] shrink-0">{q.writerMasked}</span>
+              <span className="text-[12.5px] text-muted w-[80px] shrink-0 overflow-hidden text-ellipsis whitespace-nowrap">
+                {truncate(q.writerMasked, 10)}
+              </span>
               <span className="text-[12.5px] text-muted-2 w-[90px] shrink-0">{q.createdAt}</span>
               <span
                 className="inline-block px-3 py-[6px] text-[11.5px] tracking-[0.06em] shrink-0"

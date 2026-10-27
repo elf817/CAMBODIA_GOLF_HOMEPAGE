@@ -27,4 +27,18 @@ return [
     'uploads_dir' => __DIR__ . '/uploads',
     // Public URL prefix the browser uses to fetch uploaded files.
     'uploads_url' => '/backend/uploads',
+
+    // Sends a notification email to the admin whenever a new inquiry is
+    // posted. Uses an authenticated Gmail SMTP connection (app password,
+    // not the account's normal login password — see Google Account >
+    // Security > App passwords, requires 2-step verification to be on).
+    // Leave smtp_user/smtp_pass empty to disable notifications entirely.
+    'mail' => [
+        'smtp_host' => 'smtp.gmail.com',
+        'smtp_port' => 587,
+        'smtp_user' => '',
+        'smtp_pass' => '',
+        'from' => '',
+        'to' => '',
+    ],
 ];

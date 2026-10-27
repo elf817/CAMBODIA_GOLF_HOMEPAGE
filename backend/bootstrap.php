@@ -8,6 +8,7 @@ require_once __DIR__ . '/response.php';
 require_once __DIR__ . '/cors.php';
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/upload.php';
+require_once __DIR__ . '/mailer.php';
 
 apply_cors();
 

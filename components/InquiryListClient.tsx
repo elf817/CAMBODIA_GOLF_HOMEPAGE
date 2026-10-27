@@ -11,6 +11,10 @@ import RevealBelowTabs from "@/components/RevealBelowTabs";
 const inputClass =
   "w-full px-4 py-3 bg-bg border border-deep/20 text-[14px] text-ink placeholder:text-muted-3 focus:outline-none focus:border-deep transition-colors";
 
+function truncate(text: string, maxLen: number): string {
+  return text.length > maxLen ? text.slice(0, maxLen) + "…" : text;
+}
+
 export default function InquiryListClient() {
   const { isAdmin } = useAdminAuth();
   const { lang } = useLanguage();
@@ -152,7 +156,9 @@ export default function InquiryListClient() {
                   </span>
                 </span>
                 <span className="flex items-center gap-4 sm:contents">
-                  <span className="sm:w-[110px] text-[13px] text-muted">{q.writerMasked}</span>
+                  <span className="sm:w-[110px] text-[13px] text-muted overflow-hidden text-ellipsis whitespace-nowrap">
+                    {truncate(q.writerMasked, 10)}
+                  </span>
                   <span className="sm:w-[110px] text-[12.5px] text-muted-2">{q.createdAt}</span>
                   <span className="sm:w-[100px]">
                     <span

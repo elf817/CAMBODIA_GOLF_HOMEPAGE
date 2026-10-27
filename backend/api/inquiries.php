@@ -67,8 +67,22 @@ function create_inquiry(): void {
     $pdo = get_pdo();
     $stmt = $pdo->prepare('INSERT INTO inquiries (title, writer_name, password_hash, content) VALUES (?, ?, ?, ?)');
     $stmt->execute([$title, $writerName, $hash, $content]);
+    $id = (int)$pdo->lastInsertId();
 
-    json_ok(['id' => (int)$pdo->lastInsertId()]);
+    notify_new_inquiry($id, $title, $writerName, $content);
+
+    json_ok(['id' => $id]);
+}
+
+function notify_new_inquiry(int $id, string $title, string $writerName, string $content): void {
+    $subject = "[문의게시판] 새 문의: $title";
+    $body = "새 문의가 등록되었습니다.\n\n"
+        . "제목: $title\n"
+        . "작성자: $writerName\n"
+        . "내용:\n$content\n\n"
+        . "관리자 페이지에서 확인 및 답변해 주세요.";
+    // Best-effort — a mail failure must never break inquiry submission.
+    send_admin_notification($subject, $body);
 }
 
 function verify_inquiry(): void {
