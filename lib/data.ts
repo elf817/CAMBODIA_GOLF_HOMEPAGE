@@ -173,7 +173,7 @@ export const FACILITY_TEASERS = [
   },
   {
     id: "range", name: "골프연습장", nameEn: "Driving Range", en: "PRACTICE RANGE", image: "/images/drivingrange.jpg",
-    meta: "78타석 · 1층·2층 구조", metaEn: "78 Bays · 2-Floor Layout",
+    meta: "78타석 · 1층·2층", metaEn: "78 Bays · 2-Floor Layout",
     desc: "넓고 쾌적한 1·2층 78타석 규모의 연습시설에서 스윙의 완성도를 높여보세요.",
     descEn: "Refine your swing at our spacious 2-floor, 78-bay practice facility.",
   },
